@@ -22,7 +22,7 @@ const Editor = () => {
   }, [init]);
 
   return (
-    <div className="h-full flex">
+    <div className="h-full flex flex-col">
       <div className="flex-1 h-full bg-muted" ref={containerRef}>
         <canvas ref={canvasRef} />
       </div>
