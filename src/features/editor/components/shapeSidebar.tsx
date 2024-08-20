@@ -1,5 +1,5 @@
 import React from "react";
-import { ActiveTool } from "../types";
+import { ActiveTool, Editor } from "../types";
 import { cn } from "@/lib/utils";
 import ToolSidebarHeader from "./tool-sidebar-header";
 import ToolSidebarClose from "./tool-sidebar-close";
@@ -10,11 +10,13 @@ import { IoTriangle } from "react-icons/io5";
 import { FaDiamond } from "react-icons/fa6";
 
 interface ShapeSidebarProps {
+  editor: Editor | undefined;
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
 }
 
 const ShapeSidebar = ({
+  editor,
   activeTool,
   onChangeActiveTool,
 }: ShapeSidebarProps) => {
@@ -36,16 +38,36 @@ const ShapeSidebar = ({
 
       <ScrollArea />
       <div className="grid grid-cols-3 gap-4 p-4">
-        <ShapeTool onClick={() => {}} icon={FaCircle} iconClassName="" />
-        <ShapeTool onClick={() => {}} icon={FaSquare} iconClassName="" />
-        <ShapeTool onClick={() => {}} icon={FaSquareFull} iconClassName="" />
-        <ShapeTool onClick={() => {}} icon={IoTriangle} iconClassName="" />
         <ShapeTool
-          onClick={() => {}}
+          onClick={() => editor?.addCircle()}
+          icon={FaCircle}
+          iconClassName=""
+        />
+        <ShapeTool
+          onClick={() => editor?.addSoftRectangle()}
+          icon={FaSquare}
+          iconClassName=""
+        />
+        <ShapeTool
+          onClick={() => editor?.addRectangle()}
+          icon={FaSquareFull}
+          iconClassName=""
+        />
+        <ShapeTool
+          onClick={() => editor?.addTriangle()}
+          icon={IoTriangle}
+          iconClassName=""
+        />
+        <ShapeTool
+          onClick={() => editor?.addInverseTriangle()}
           icon={IoTriangle}
           iconClassName="rotate-180"
         />
-        <ShapeTool onClick={() => {}} icon={FaDiamond} iconClassName="" />
+        <ShapeTool
+          onClick={() => editor?.addDiamond()}
+          icon={FaDiamond}
+          iconClassName=""
+        />
       </div>
       <ToolSidebarClose onClose={onClose} />
     </aside>
