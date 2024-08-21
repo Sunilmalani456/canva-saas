@@ -11,6 +11,7 @@ import {
   STROKE_COLOR,
   STROKE_WIDTH,
   TRIANGLE_OPTIONS,
+  useEditorHookProps,
 } from "../types";
 import { useAutoResize } from "./use-auto-resize";
 import useCanvasEvent from "./use-Canvas-Event";
@@ -184,7 +185,7 @@ const buildEditor = ({
   };
 };
 
-const useEditor = () => {
+const useEditor = ({ cleareSelectionCallback }: useEditorHookProps) => {
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [selectedObject, setSelectedObject] = useState<fabric.Object[]>([]);
@@ -202,6 +203,7 @@ const useEditor = () => {
     canvas,
     container,
     setSelectedObject,
+    cleareSelectionCallback,
   });
 
   const editor = useMemo(() => {

@@ -5,12 +5,14 @@ interface useCanvasEventProps {
   canvas: fabric.Canvas | null;
   container: HTMLDivElement | null;
   setSelectedObject: (objects: fabric.Object[]) => void;
+  cleareSelectionCallback?: () => void;
 }
 
 const useCanvasEvent = ({
   canvas,
   container,
   setSelectedObject,
+  cleareSelectionCallback,
 }: useCanvasEventProps) => {
   useEffect(() => {
     if (canvas) {
@@ -22,6 +24,7 @@ const useCanvasEvent = ({
       });
       canvas.on("selection:cleared", (e) => {
         setSelectedObject([]);
+        cleareSelectionCallback?.();
       });
     }
 
@@ -34,6 +37,7 @@ const useCanvasEvent = ({
     };
   }, [
     canvas,
+    cleareSelectionCallback,
     setSelectedObject, // no need for this, this from useState()
   ]);
 };

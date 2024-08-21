@@ -1,6 +1,20 @@
 import { fabric } from "fabric";
 import * as material from "material-colors";
 
+export const selectDependentTool = [
+  "fill",
+  "font",
+  "filter",
+  "opacity",
+  "remove-bg",
+  "stroke-color",
+  "stroke-width",
+];
+
+export interface useEditorHookProps {
+  cleareSelectionCallback?: () => void;
+}
+
 export const colors = [
   material.red["500"],
   material.pink["500"],
