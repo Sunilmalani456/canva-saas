@@ -255,6 +255,25 @@ const buildEditor = ({
       const wordspace = workSpace();
       wordspace?.sendToBack();
     },
+
+    changeOpacity: (value: number) => {
+      canvas.getActiveObjects().forEach((object) => {
+        object.set({ opacity: value });
+      });
+
+      canvas.renderAll();
+    },
+    getActiveOpacity: () => {
+      const selectedFirstObject = selectedObject[0];
+
+      if (!selectedFirstObject) {
+        return 1;
+      }
+
+      const value = selectedFirstObject.get("opacity") || 1;
+
+      return value;
+    },
   };
 };
 

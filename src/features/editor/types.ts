@@ -136,4 +136,7 @@ export interface Editor {
 
   bringForword: () => void;
   sendBackword: () => void;
+
+  changeOpacity: (value: number) => void;
+  getActiveOpacity: () => number;
 }

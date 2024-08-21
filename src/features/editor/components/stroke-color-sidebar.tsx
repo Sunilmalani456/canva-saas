@@ -38,10 +38,11 @@ const StrokeColorSidebar = ({
         description="Add stroke color to your element"
       />
 
-      <ScrollArea />
-      <div className="p-4 space-y-6">
-        <ColorPcker value={value} onChange={onChange} />
-      </div>
+      <ScrollArea>
+        <div className="p-4 space-y-6">
+          <ColorPcker value={value} onChange={onChange} />
+        </div>
+      </ScrollArea>
       <ToolSidebarClose onClose={onClose} />
     </aside>
   );
