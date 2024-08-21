@@ -2,6 +2,7 @@ import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ActiveTool, Editor } from "../types";
+import { BsBorderWidth } from "react-icons/bs";
 
 interface ToolbarProps {
   editor: Editor | undefined;
@@ -51,6 +52,20 @@ const Toolbar = ({ editor, activeTool, onChangeActiveTool }: ToolbarProps) => {
               className="rounded-sm size-4 border-2 bg-white"
               style={{ borderColor: strokeColor }}
             />
+          </Button>
+        </Hint>
+      </div>
+
+      {/* Stroke-width */}
+      <div className="flex items-center justify-center h-full">
+        <Hint label="Stroke Width" side="bottom" sideOffset={5}>
+          <Button
+            size={"icon"}
+            variant={"ghost"}
+            onClick={() => onChangeActiveTool("stroke-width")}
+            className={cn(activeTool === "stroke-width" && "bg-gray-100")}
+          >
+            <BsBorderWidth className="size-4" />
           </Button>
         </Hint>
       </div>
