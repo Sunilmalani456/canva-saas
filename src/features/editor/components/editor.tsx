@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import useEditor from "../hooks/use-editor";
 import { fabric } from "fabric";
-import Navbar from "./navbar";
-import Sidebar from "./sidebar";
-import Toolbar from "./toolbar";
-import Footer from "./footer";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useEditor from "../hooks/use-editor";
 import { ActiveTool, selectDependentTool } from "../types";
-import ShapeSidebar from "./shapeSidebar";
 import FillColorSidebar from "./fill-color-sidebar";
+import Footer from "./footer";
+import Navbar from "./navbar";
+import ShapeSidebar from "./shapeSidebar";
+import Sidebar from "./sidebar";
+import StrokeColorSidebar from "./stroke-color-sidebar";
+import Toolbar from "./toolbar";
 
 const Editor = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
@@ -80,6 +81,13 @@ const Editor = () => {
 
         {/* Fill color SIDEBAR */}
         <FillColorSidebar
+          editor={editor}
+          activeTool={activeTool}
+          onChangeActiveTool={onChangeActiveTool}
+        />
+
+        {/* Stroke color SIDEBAR */}
+        <StrokeColorSidebar
           editor={editor}
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}

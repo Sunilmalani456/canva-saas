@@ -126,6 +126,6 @@ export interface Editor {
   selectedObject: fabric.Object[];
   canvas: fabric.Canvas;
   getActiveFillColor: () => string;
-  strokeColor: string;
+  getActiveStrokeColor: () => string;
   strokeWidth: number;
 }

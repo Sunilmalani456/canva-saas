@@ -179,7 +179,17 @@ const buildEditor = ({
       // Currently pattern and gradiant are not support
       return value as string;
     },
-    strokeColor,
+    getActiveStrokeColor: () => {
+      const selectedFirstObject = selectedObject[0];
+
+      if (!selectedFirstObject) {
+        return strokeColor;
+      }
+
+      const value = selectedFirstObject.get("stroke") || strokeColor;
+
+      return value;
+    },
     strokeWidth,
     selectedObject,
   };
