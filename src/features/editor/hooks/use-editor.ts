@@ -231,6 +231,30 @@ const buildEditor = ({
       return value;
     },
     selectedObject,
+
+    // ----Layering----
+    bringForword: () => {
+      canvas.getActiveObjects().forEach((object) => {
+        canvas.bringForward(object);
+      });
+
+      canvas.renderAll();
+
+      // Todo:fix workspace overflow
+      const wordspace = workSpace();
+      wordspace?.sendBackwards();
+    },
+    sendBackword: () => {
+      canvas.getActiveObjects().forEach((object) => {
+        canvas.sendBackwards(object);
+      });
+
+      canvas.renderAll();
+
+      // Todo:fix workspace overflow
+      const wordspace = workSpace();
+      wordspace?.sendToBack();
+    },
   };
 };
 

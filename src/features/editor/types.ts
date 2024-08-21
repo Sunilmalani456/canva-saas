@@ -133,4 +133,7 @@ export interface Editor {
   getActiveStrokeColor: () => string;
   getActiveStrokeWidth: () => number;
   getActiveStrokeDashedArray: () => number[];
+
+  bringForword: () => void;
+  sendBackword: () => void;
 }

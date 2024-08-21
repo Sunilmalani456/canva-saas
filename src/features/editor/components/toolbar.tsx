@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ActiveTool, Editor } from "../types";
 import { BsBorderWidth } from "react-icons/bs";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 interface ToolbarProps {
   editor: Editor | undefined;
@@ -66,6 +67,32 @@ const Toolbar = ({ editor, activeTool, onChangeActiveTool }: ToolbarProps) => {
             className={cn(activeTool === "stroke-width" && "bg-gray-100")}
           >
             <BsBorderWidth className="size-4" />
+          </Button>
+        </Hint>
+      </div>
+
+      {/* Bring Forword to elemnet */}
+      <div className="flex items-center justify-center h-full">
+        <Hint label="Bring forword" side="bottom" sideOffset={5}>
+          <Button
+            size={"icon"}
+            variant={"ghost"}
+            onClick={() => editor?.bringForword()}
+          >
+            <ArrowUp className="size-4" />
+          </Button>
+        </Hint>
+      </div>
+
+      {/* Send Borword to elemnet */}
+      <div className="flex items-center justify-center h-full">
+        <Hint label="Send borword" side="bottom" sideOffset={5}>
+          <Button
+            size={"icon"}
+            variant={"ghost"}
+            onClick={() => editor?.sendBackword()}
+          >
+            <ArrowDown className="size-4" />
           </Button>
         </Hint>
       </div>
