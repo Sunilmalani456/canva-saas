@@ -1,4 +1,5 @@
 import { fabric } from "fabric";
+import { ITextOptions } from "fabric/fabric-impl";
 import * as material from "material-colors";
 
 export const selectDependentTool = [
@@ -71,6 +72,8 @@ export const FILL_COLOR = "rgba(0,0,0,1)";
 export const STROKE_COLOR = "rgba(0,0,0,1)";
 export const STROKE_WIDTH = 2;
 export const STROKE_DAHSED_ARRAY = [];
+const FONT_FAMILY = "Arial";
+const FONT_SIZE = 32;
 
 export const CIRCLE_OPTIONS = {
   radius: 150,
@@ -101,6 +104,15 @@ export const TRIANGLE_OPTIONS = {
   width: 400,
   height: 400,
   angle: 0,
+};
+
+export const TEXT_OPTIONS = {
+  type: "textbox",
+  left: 100,
+  top: 100,
+  fill: FILL_COLOR,
+  fonstfamily: FONT_FAMILY,
+  fontSize: FONT_SIZE,
 };
 
 export const DIAMOND_OPTIONS = {
@@ -139,4 +151,6 @@ export interface Editor {
 
   changeOpacity: (value: number) => void;
   getActiveOpacity: () => number;
+
+  addText: (value: string, options?: ITextOptions) => void;
 }

@@ -11,6 +11,7 @@ import {
   STROKE_COLOR,
   STROKE_DAHSED_ARRAY,
   STROKE_WIDTH,
+  TEXT_OPTIONS,
   TRIANGLE_OPTIONS,
   useEditorHookProps,
 } from "../types";
@@ -273,6 +274,16 @@ const buildEditor = ({
       const value = selectedFirstObject.get("opacity") || 1;
 
       return value;
+    },
+
+    // ----Text----
+    addText: (value, options) => {
+      const object = new fabric.IText(value, {
+        ...TEXT_OPTIONS,
+        fill: fillColor,
+        ...options,
+      });
+      addToCanvas(object);
     },
   };
 };
