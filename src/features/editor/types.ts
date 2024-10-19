@@ -12,6 +12,28 @@ export const selectDependentTool = [
   "stroke-width",
 ];
 
+export const fonts = [
+  "Arial",
+  "Arial Black",
+  "Verdana",
+  "Helvetica",
+  "Tahoma",
+  "Trebuchet MS",
+  "Times New Roman",
+  "Georgia",
+  "Garamond",
+  "Courier New",
+  "Brush Script MT",
+  "Comic Sans MS",
+  "Palatino",
+  "Bookman",
+  "Comic Sans MS",
+  "Impact",
+  "Lucida Sans Unicode",
+  "Geneva",
+  "Lucida Console",
+];
+
 export interface useEditorHookProps {
   cleareSelectionCallback?: () => void;
 }
@@ -66,14 +88,16 @@ export type BuildEditorProps = {
   setStrokeColor: (value: string) => void;
   setStrokeWidth: (value: number) => void;
   setStrokeDashedArray: (value: number[]) => void;
+  fontFamily: string;
+  setFontFamily: (value: string) => void;
 };
 
 export const FILL_COLOR = "rgba(0,0,0,1)";
 export const STROKE_COLOR = "rgba(0,0,0,1)";
 export const STROKE_WIDTH = 2;
 export const STROKE_DAHSED_ARRAY = [];
-const FONT_FAMILY = "Arial";
-const FONT_SIZE = 32;
+export const FONT_FAMILY = "Arial";
+export const FONT_SIZE = 32;
 
 export const CIRCLE_OPTIONS = {
   radius: 150,
@@ -153,4 +177,6 @@ export interface Editor {
   getActiveOpacity: () => number;
 
   addText: (value: string, options?: ITextOptions) => void;
+  changeFontfamily: (value: string) => void;
+  getActiveFontFamily: () => string;
 }

@@ -7,6 +7,7 @@ import {
   DIAMOND_OPTIONS,
   Editor,
   FILL_COLOR,
+  FONT_FAMILY,
   RECTANGLE_OPTIONS,
   STROKE_COLOR,
   STROKE_DAHSED_ARRAY,
@@ -29,6 +30,8 @@ const buildEditor = ({
   strokeDashedArray,
   setStrokeDashedArray,
   selectedObject,
+  fontFamily,
+  setFontFamily,
 }: BuildEditorProps): Editor => {
   const workSpace = () => {
     return canvas.getObjects().find((obj) => obj.name === "clip");
@@ -185,6 +188,18 @@ const buildEditor = ({
 
     // ----Complete Canvas, fillColor, strokeColor, strokeWidth-------
     canvas,
+    getActiveFontFamily: () => {
+      const selectedFirstObject = selectedObject[0];
+
+      if (!selectedFirstObject) {
+        return fontFamily;
+      }
+      // @ts-ignore
+      const value = selectedFirstObject.get("fontfamily") || fontFamily;
+
+      // Currently pattern and gradiant are not support
+      return value;
+    },
     getActiveFillColor: () => {
       const selectedFirstObject = selectedObject[0];
 
@@ -285,6 +300,18 @@ const buildEditor = ({
       });
       addToCanvas(object);
     },
+
+    changeFontfamily: (value: string) => {
+      setFontFamily(value);
+
+      canvas.getActiveObjects().forEach((object) => {
+        if (isTextType(object.type)) {
+          // @ts-ignore
+          object.set({ fontFamily: value });
+        }
+      });
+      canvas.renderAll();
+    },
   };
 };
 
@@ -295,6 +322,7 @@ const useEditor = ({ cleareSelectionCallback }: useEditorHookProps) => {
   const [fillColor, setFillColor] = useState(FILL_COLOR);
   const [strokeColor, setStrokeColor] = useState(STROKE_COLOR);
   const [strokeWidth, setStrokeWidth] = useState(STROKE_WIDTH);
+  const [fontFamily, setFontFamily] = useState(FONT_FAMILY);
   const [strokeDashedArray, setStrokeDashedArray] =
     useState<number[]>(STROKE_DAHSED_ARRAY);
 
@@ -325,6 +353,8 @@ const useEditor = ({ cleareSelectionCallback }: useEditorHookProps) => {
         strokeDashedArray,
         setStrokeDashedArray,
         selectedObject,
+        fontFamily,
+        setFontFamily,
       });
     }
 
@@ -336,6 +366,7 @@ const useEditor = ({ cleareSelectionCallback }: useEditorHookProps) => {
     strokeWidth,
     selectedObject,
     strokeDashedArray,
+    fontFamily,
   ]);
 
   const init = useCallback(
